@@ -694,7 +694,7 @@ html:not(.js) .revelable {
 }
 
 .carta-flor-a {
-  top: -1.75rem;
+  top: -2.15rem;
   left: 0.15rem;
   width: 2.2rem;
   transform: rotate(-16deg);
@@ -744,19 +744,23 @@ html:not(.js) .revelable {
 }
 
 .carta-firma {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
   margin-top: 1.9rem;
 }
 
-.firma-texto p {
+.carta-firma p {
   margin: 0;
 }
 
-.firma-texto p + p {
+.carta-firma p + p {
   margin-top: 0.2em;
+}
+
+/* las dos estampitas del final, cada una con su rosa */
+.carta-estampas {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 2rem;
 }
 
 .carta-pd {
@@ -768,16 +772,17 @@ html:not(.js) .revelable {
 /* Estampitas: cada una es un sello de correos con una imagen reemplazable */
 .estampa {
   flex: none;
-  width: 70px;
-  height: 90px;
+  width: 80px;
+  height: 100px;
   margin: 0;
   padding: 5px;
   background: radial-gradient(circle, transparent 0 2.6px, #fffdf9 3.2px) -5px -5px / 10px 10px;
   filter: drop-shadow(0 1px 1.5px rgba(89, 72, 72, 0.3));
 }
 
-.estampa-ellie { transform: rotate(5deg); }
-.estampa-leon  { transform: rotate(-4deg); }
+.estampa-ellie      { transform: rotate(5deg); }
+.estampa-ellie-rosa { transform: rotate(-5deg); }
+.estampa-leon       { transform: rotate(4deg); }
 
 .estampa-cuerpo {
   display: flex;
@@ -789,8 +794,10 @@ html:not(.js) .revelable {
 
 .estampa-cuerpo img {
   display: block;
+  flex: 1 1 0;
   width: 100%;
-  height: 56px;
+  height: 0;
+  min-height: 0;
   padding: 5px;
   object-fit: contain;
   background: var(--rosa-claro);
@@ -804,11 +811,34 @@ html:not(.js) .revelable {
 .estampa-foto .estampa-cuerpo img {
   padding: 0;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 22%;
+}
+
+.estampa-foto.estampa-leon .estampa-cuerpo img {
+  object-position: 42% 8%;
+}
+
+.estampa-foto.estampa-ellie-rosa .estampa-cuerpo img {
+  object-position: 50% 12%;
+}
+
+@media (min-width: 23em) {
+  .carta-estampas .estampa {
+    width: 100px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 359px) {
+  .estampa {
+    width: 70px;
+    height: 90px;
+  }
 }
 
 .estampa figcaption {
-  flex: 1;
+  flex: none;
+  height: 24px;
   display: grid;
   place-items: center;
   font-size: 0.75rem;
@@ -828,12 +858,8 @@ html:not(.js) .revelable {
   }
 
   .estampa {
-    width: 80px;
-    height: 100px;
-  }
-
-  .estampa-cuerpo img {
-    height: 64px;
+    width: 100px;
+    height: 120px;
   }
 
   .carta-flor-a {
@@ -1005,28 +1031,19 @@ html:not(.js) .revelable {
   *,
   *::before,
   *::after {
-    animation-delay: 0s !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-delay: 0s !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   .petalo {
     top: var(--py);
-    animation: none !important;
   }
 
-  .escena-sobre.is-activa .sobre,
-  .cofre-tapa,
-  .flor-capullo,
-  .cofre.is-abierto .flor img,
-  .flor-final.is-florecida .flor-abierta {
-    animation: none !important;
+  .cofre.is-abierto .cofre-tapa {
+    visibility: hidden;
   }
 
   .cofre.is-abierto .destello {
-    animation: none !important;
     opacity: 0.9;
     transform: translate(var(--dx), var(--dy)) scale(0.8);
   }

@@ -21,11 +21,11 @@ assets/stickers/    estampitas de la carta
 
 ## Cambiar las estampitas
 
-Las dos estampitas de la carta usan `assets/stickers/ellie.svg` y `assets/stickers/leon.jpg`.
+Las estampitas de la carta usan las imágenes `estampa-ellie.jpg`, `estampa-ellie-rosa.jpg` y `estampa-leon.jpg` de `assets/stickers/`.
 Para poner otras imágenes:
 
 1. Guarda la imagen en `assets/stickers/` (PNG, JPG o WebP; con unos 300 px de ancho basta).
-2. En `index.html`, busca los comentarios `Sticker 1` y `Sticker 2` y cambia el `src` de la imagen que está justo debajo.
+2. En `index.html`, busca los comentarios `Sticker` y cambia el `src` de la imagen que está justo debajo.
 3. Si la imagen es una foto o ilustración que debe llenar el sello, añade la clase `estampa-foto` a su `<figure>`.
 
 El texto bajo cada estampita está en su `<figcaption>`.
