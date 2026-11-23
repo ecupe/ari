@@ -1,22 +1,24 @@
-# Una cosita para Ari ♡
+# Ari ♡
 
 Una cartita interactiva: un sobre, un cofre con flores, una carta y una última florecita.
 
-Hecha con HTML, CSS y JavaScript, sin dependencias ni paso de compilación.
+Hecha con HTML, CSS y JavaScript, sin dependencias ni paso de compilación. El 3D es CSS puro.
 
 ## Verla en local
 
-Abre `index.html` en el navegador, o sirve la carpeta con cualquier servidor estático.
+Sirve la carpeta con cualquier servidor estático y abre `index.html`.
 
 ## Estructura
 
 ```text
 index.html          contenido y texto de la carta
-style.css           estilos y animaciones
+style.css           estilos, animaciones y 3D
 script.js           cambio de escenas e interacciones
-assets/cofre/       piezas del cofre
+assets/cofre/       caras del cofre
+assets/maceta/      caras de la maceta
 assets/flowers/     flores
 assets/stickers/    estampitas de la carta
+assets/fonts/       tipografías y sus licencias
 ```
 
 ## Cambiar las estampitas
@@ -29,3 +31,7 @@ Para poner otras imágenes:
 3. Si la imagen es una foto o ilustración que debe llenar el sello, añade la clase `estampa-foto` a su `<figure>`.
 
 El texto bajo cada estampita está en su `<figcaption>`.
+
+## Tipografías
+
+Pixelify Sans y Mali, ambas con licencia SIL Open Font License 1.1 (ver `assets/fonts/`).
