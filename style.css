@@ -818,42 +818,47 @@ html:not(.js) .revelable {
   transform: rotateX(112deg);
 }
 
-/* El ramo va en dos planos, uno más al fondo y otro más adelante:
-   da profundidad sin pedirle al navegador que ordene nueve láminas sueltas */
-.ramo {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 0;
-  height: 0;
-}
-
-.ramo-fondo  { transform: translateZ(-1.4em); }
-.ramo-frente { transform: translateZ(1.5em); }
-
+/* Cada flor es una lámina propia dentro de la caja, a distinta profundidad.
+   Su estado normal ya es el final: si la animación de salida no corriera, igual se verían. */
 .flor {
   position: absolute;
-  bottom: 0;
-  left: calc(var(--x) - var(--w) * var(--u) / 2);
+  left: calc(50% + var(--x) - var(--w) * var(--u) / 2);
+  bottom: 100%;
+  display: block;
   width: calc(var(--w) * var(--u));
   transform-origin: 50% 100%;
-  transform: rotate(0deg) scale(0.2);
-  opacity: 0;
+  transform: translateZ(var(--z)) rotate(var(--r)) scale(var(--s));
+  visibility: hidden;
 }
 
 .flor img {
   display: block;
   width: 100%;
+  max-width: none;
   height: auto;
   transform-origin: 50% 100%;
 }
 
 .cofre.is-abierto .flor {
-  transform: rotate(var(--r)) scale(var(--s));
-  opacity: 1;
-  transition:
-    transform 0.85s cubic-bezier(0.3, 1.55, 0.5, 1) calc(0.42s + var(--d)),
-    opacity 0.15s linear calc(0.42s + var(--d));
+  visibility: visible;
+  animation:
+    florecer 0.85s cubic-bezier(0.3, 1.55, 0.5, 1) calc(0.42s + var(--d)) backwards,
+    asomar 0.15s linear calc(0.42s + var(--d)) backwards;
+}
+
+@keyframes florecer {
+  from { transform: translateZ(var(--z)) rotate(0deg) scale(0.2); }
+  to   { transform: translateZ(var(--z)) rotate(var(--r)) scale(var(--s)); }
+}
+
+@keyframes asomar {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* seguro: terminada la salida, las flores quedan fijas sin depender de ninguna animación */
+.cofre.is-asentado .flor {
+  animation: none;
 }
 
 .cofre.is-abierto .flor img {

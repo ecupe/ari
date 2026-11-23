@@ -140,7 +140,10 @@
       sale.hidden = true;
       // Cada escena queda lista para cuando se vuelva a ella.
       if (sale === escenas.sobre) cerrarSobre();
-      if (sale === escenas.cofre && cofre.classList.contains('is-abierto')) terminarCofre();
+      if (sale === escenas.cofre && cofre.classList.contains('is-abierto')) {
+        terminarCofre();
+        cofre.classList.add('is-asentado');
+      }
       if (alCambiar) alCambiar();
 
       entra.hidden = false;
@@ -194,6 +197,9 @@
       mensajeCofre.classList.add('is-visible');
       anunciar(mensajeCofre.textContent);
     });
+
+    // Cuando ya salieron todas, las flores quedan fijas en su sitio.
+    despues(ms(2600, 0), () => cofre.classList.add('is-asentado'));
 
     // «Seguir» aparece enseguida, pero no tan pronto como para pulsarlo con un doble toque.
     despues(ms(1200, 500), () => {
@@ -271,7 +277,7 @@
     irA('sobre', () => {
       cerrarSobre();
 
-      cofre.classList.remove('is-abierto');
+      cofre.classList.remove('is-abierto', 'is-asentado');
       mensajeCofre.classList.remove('is-visible');
       btnAbrirCofre.disabled = false;
       btnAbrirCofre.hidden = false;
